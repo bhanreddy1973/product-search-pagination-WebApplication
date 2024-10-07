@@ -1,70 +1,149 @@
-# Getting Started with Create React App
+# Product Search and Display App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a Product Search and Display Application built with React, Redux, and Axios. The application fetches product data from the DummyJSON API and displays it with category filtering, search functionality, and lazy loading (pagination).
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Category Filtering**: Select a product category to view products specific to that category.
+- **Search Functionality**: Search for products by partial names, with search results that are not case-sensitive.
+- **Pagination**: Products are fetched in batches of 10 from the API. As you scroll, new products load dynamically.
+- **Redux State Management**: Product and category data are stored using Redux.
+- **Query Parameters**: The selected category and search input are stored as URL query parameters to allow deep linking and state persistence across reloads.
+- **Responsive UI**: User-friendly interface 
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Follow these steps to set up and run the project on your local machine.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Prerequisites
 
-### `npm test`
+Ensure that you have the following installed:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js (v14 or above)
+- npm (Node package manager)
 
-### `npm run build`
+### Installation Instructions
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the Repository:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   git clone https://github.com/your-username/product-search-pagination-app.git
+   cd product-search-pagination-app
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Install Dependencies:
 
-### `npm run eject`
+   ```bash
+   npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. Run the Development Server:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```bash
+   npm start
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   The app will now be running locally on `http://localhost:3000`.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Application Structure
 
-## Learn More
+```
+src/
+│
+├── components/            # Reusable UI components (CategoryList, ProductList, SearchBar)
+├── store/                 # Redux store setup and product/category slices
+├── App.js                 # Main application component
+├── index.js               # App entry point
+├── App.css                # Global styling
+└── ...
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Key Components
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **SearchBar**: Allows users to search for products by name.
+- **CategoryList**: Displays all categories and lets users select a category to filter the products.
+- **ProductList**: Displays products, either based on selected categories or search terms. Supports pagination (lazy loading).
 
-### Code Splitting
+## API Endpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The app interacts with the following API endpoints from DummyJSON:
 
-### Analyzing the Bundle Size
+- Categories Endpoint:
+  ```
+  GET https://dummyjson.com/products/categories
+  ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Products Endpoint:
+  ```
+  GET https://dummyjson.com/products?limit=10&skip=0
+  ```
 
-### Making a Progressive Web App
+- Search Endpoint:
+  ```
+  GET https://dummyjson.com/products/search?q={search-term}
+  ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Application Walkthrough
 
-### Advanced Configuration
+### Home Page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+On page load, the app fetches all available categories and displays products from all categories (or the first 10 if pagination is enabled).
 
-### Deployment
+### Search Functionality
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Users can search for products by typing into the search bar. The app fetches products that match the search term from the API.
 
-### `npm run build` fails to minify
+### Category Filtering
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Users can select a category to filter the displayed products. If no category is selected, the app defaults to showing products from all categories.
+
+### Pagination
+
+The app fetches products in batches of 10. As the user scrolls down, more products are loaded and displayed.
+
+### Query Parameters
+
+- **Category**: When a category is selected, the URL is updated with the selected category:
+  ```
+  http://localhost:3000/?category=smartphones
+  ```
+
+- **Search Term**: When a search is performed, the search term is added to the query parameters:
+  ```
+  http://localhost:3000/?category=smartphones&search=iphone
+  ```
+
+## Limitations
+
+- Initial Page Load: The app fetches the first 10 products from all categories on load.
+- Category Selection: Only one category can be selected at a time (single-select).
+- No Backend: The app relies solely on the DummyJSON API.
+
+## Future Enhancements
+
+- Improved Search with fuzzy search 
+- Enhanced UI with more interactivity 
+- Local Pagination for better performance on large datasets
+
+## Tech Stack
+
+- React
+- Redux
+- Axios
+- React-Router
+- React-Paginate
+- Bootstrap
+- Custom CSS
+
+
+
+## Screenshots
+
+![image](https://github.com/user-attachments/assets/df61224d-56a7-4747-9c9f-4407d40a392d)   (default page)
+![image](https://github.com/user-attachments/assets/bd90ca1a-1023-4358-9a28-c938ce1ee1aa)   (specific category)
+![image](https://github.com/user-attachments/assets/53ed6fce-57be-45d5-ac22-0be361cfac16)   (using searchbar with semi-word )
+![image](https://github.com/user-attachments/assets/327c4d2c-925c-4415-bdc1-4efc3b4641e2)   (using searchbar with full-word )
+
+## Contributing
+
+If you'd like to contribute to this project, feel free to open issues or submit pull requests. For major changes, please open an issue first to discuss what you would like to change.
