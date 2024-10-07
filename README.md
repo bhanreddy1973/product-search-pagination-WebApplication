@@ -24,21 +24,35 @@ Ensure that you have the following installed:
 
 ### Installation Instructions
 
-1. Clone the Repository:
+Follow these steps to set up and run the project on your local machine:
 
+1. Clone the Repository:
    ```bash
    git clone https://github.com/your-username/product-search-pagination-app.git
    cd product-search-pagination-app
    ```
 
 2. Install Dependencies:
-
    ```bash
    npm install
    ```
 
-3. Run the Development Server:
+3. Install Redux and related packages:
+   ```bash
+   npm install redux react-redux @reduxjs/toolkit
+   ```
 
+4. Install Bootstrap:
+   ```bash
+   npm install bootstrap
+   ```
+
+5. Install other necessary packages:
+   ```bash
+   npm install axios react-router-dom react-paginate
+   ```
+
+6. Run the Development Server:
    ```bash
    npm start
    ```
@@ -47,16 +61,28 @@ Ensure that you have the following installed:
 
 ## Application Structure
 
-```
 src/
 │
-├── components/            # Reusable UI components (CategoryList, ProductList, SearchBar)
-├── store/                 # Redux store setup and product/category slices
-├── App.js                 # Main application component
-├── index.js               # App entry point
-├── App.css                # Global styling
-└── ...
-```
+├── components/
+│   ├── AppContent.js
+│   ├── CategoryList.js
+│   ├── ErrorBoundary.js
+│   ├── ProductList.js
+│   └── SearchBar.js
+│
+├── store/
+│   ├── actions/
+│   │   └── productActions.js
+│   ├── reducers/
+│   │   ├── productReducer.js
+│   │   ├── index.js
+│   │   └── productSlice.js
+│   └── store.js
+│
+├── App.css
+├── App.js
+├── App.test.js
+└── index.css
 
 ### Key Components
 
