@@ -28,7 +28,7 @@ Follow these steps to set up and run the project on your local machine:
 
 1. Clone the Repository:
    ```bash
-   git clone https://github.com/your-username/product-search-pagination-app.git
+   git clone https://github.com/bhanreddy1973/product-search-pagination-app.git
    cd product-search-pagination-app
    ```
 
