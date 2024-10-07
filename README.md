@@ -61,6 +61,8 @@ Follow these steps to set up and run the project on your local machine:
 
 ## Application Structure
 
+
+```
 src/
 │
 ├── components/
@@ -83,12 +85,31 @@ src/
 ├── App.js
 ├── App.test.js
 └── index.css
+```
 
-### Key Components
+### Key Components and Files
 
-- **SearchBar**: Allows users to search for products by name.
-- **CategoryList**: Displays all categories and lets users select a category to filter the products.
-- **ProductList**: Displays products, either based on selected categories or search terms. Supports pagination (lazy loading).
+- **components/**
+  - `AppContent.js`: Main content component of the application
+  - `CategoryList.js`: Displays and manages product categories
+  - `ErrorBoundary.js`: Handles error catching and display
+  - `ProductList.js`: Renders the list of products
+  - `SearchBar.js`: Handles product search functionality
+
+- **store/**
+  - **actions/**
+    - `productActions.js`: Defines Redux actions for products
+  - **reducers/**
+    - `productReducer.js`: Manages product state changes
+    - `index.js`: Combines all reducers
+    - `productSlice.js`: Defines the product slice using Redux Toolkit
+  - `store.js`: Configures and exports the Redux store
+
+- `App.js`: Main application component
+- `App.css`: Styles for the main App component
+- `index.css`: Global styles
+- `App.test.js`: Tests for the App component
+
 
 ## API Endpoints
 
